@@ -11,7 +11,7 @@ idna==3.6
 importlib-metadata==4.8.3
 importlib-resources==5.4.0
 itsdangerous==2.0.1
-Jinja2==3.0.3
+Jinja2==3.1.6
 MarkupSafe==2.0.1
 peewee==3.17.1
 pipreqs==0.4.11
