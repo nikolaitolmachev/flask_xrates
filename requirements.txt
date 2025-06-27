@@ -23,7 +23,7 @@ typing_extensions==4.1.1
 tzdata==2024.1
 tzlocal==4.2
 urllib3==1.26.18
-Werkzeug==2.0.3
+Werkzeug==3.0.6
 xmltodict==0.13.0
 yarg==0.1.9
 zipp==3.6.0
