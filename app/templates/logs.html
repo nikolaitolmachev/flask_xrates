@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API Logs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>API Logs</h1>
+
+    {% if not logs %}
+        <p class="empty">No logs yet.</p>
+    {% else %}
+        <ul class="log-list">
+        {% for l in logs %}
+            <li class="log-item {% if l.error %}error{% endif %}">
+                <span class="log-label">Method</span>
+                <span class="log-value">{{ l.request_method }}</span>
+                &nbsp;&middot;&nbsp;
+                <span class="log-label">URL</span>
+                <span class="log-value">{{ l.request_url }}</span>
+                &nbsp;&middot;&nbsp;
+                <span class="log-label">Time</span>
+                <span class="log-value">{{ l.created.strftime('%Y-%m-%d %H:%M:%S') }}</span>
+                {% if l.error %}
+                    <br>
+                    <span class="log-label">Error</span>
+                    <span class="log-value error-text">{{ l.error }}</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+</body>
+</html>

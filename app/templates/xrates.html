@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exchange Rates</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Exchange Rates</h1>
+
+    {% if not xrates %}
+        <p class="empty">No rates available.</p>
+    {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <td>From</td>
+                    <td>To</td>
+                    <td>Rate</td>
+                    <td>Updated</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+            {% for rate in xrates %}
+                <tr>
+                    <td>{{ codes.get(rate.from_currency, rate.from_currency) }}</td>
+                    <td>{{ codes.get(rate.to_currency, rate.to_currency) }}</td>
+                    <td class="rate-value">{{ "%.4f"|format(rate.rate) }}</td>
+                    <td class="date-cell">
+                        {{ rate.updated.strftime('%b %d, %Y') }}<br>
+                        <span class="time">{{ rate.updated.strftime('%H:%M') }}</span>
+                    </td>
+                    <td>
+                        <a class="btn btn-update" href="{{ url_for('update_xrates_pair', from_currency=rate.from_currency, to_currency=rate.to_currency) }}">Update</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-edit" href="{{ url_for('edit_xrate', from_currency=rate.from_currency, to_currency=rate.to_currency) }}">Edit</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <p style="text-align:center; margin-top: 16px;">
+            <a class="btn btn-all" href="{{ url_for('update_xrates_all') }}">Update All</a>
+        </p>
+    {% endif %}
+
+    <div class="api-links">
+        <span>API:</span>
+        <a href="{{ url_for('api_rates', fmt='json') }}">JSON</a>
+        <a href="{{ url_for('api_rates', fmt='xml') }}">XML</a>
+    </div>
+</div>
+</div>
+</body>
+</html>

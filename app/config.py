@@ -1,6 +1,7 @@
 import logging
 
-DB_NAME = 'data.db'
+
+DB_NAME = "data.db"
 
 LOGGER_CONFIG = {
     'version': 1,
@@ -18,32 +19,32 @@ LOGGER_CONFIG = {
         'file': {
             'class': 'logging.FileHandler',
             'formatter': 'default',
-            'filename': 'new.log',
+            'filename': 'app.log',
         },
     },
+    'root': {
+        'handlers': ['file', 'console'],
+        'level': logging.DEBUG,
+    },
     'loggers': {
-        'GoldenEye': {
-            'handlers': ['file', 'console'],
-            'level': logging.DEBUG
-        },
         'Api': {
             'handlers': ['file', 'console'],
-            'level': logging.DEBUG
+            'level': logging.DEBUG,
         },
         'Tasks': {
             'handlers': ['file', 'console'],
-            'level': logging.DEBUG
+            'level': logging.DEBUG,
         },
     },
 }
 
 CODE_CURRENCY = {
-    840 : 'USD',
-    933 : 'BYN',
-    978 : 'EUR',
-    1000 : 'BTC'
+    840: "USD",
+    933: "BYN",
+    978: "EUR",
+    1000: "BTC",
 }
 
 HTTP_TIMEOUT = 15
 
-IP_LIST = ['127.0.0.1', '127.0.0.10']
+IP_LIST = ["127.0.0.1", "127.0.0.10"]

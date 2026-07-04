@@ -35,6 +35,3 @@ Thumbs.db
 dist/
 build/
 *.egg-info/
-
-# Temp
-temp.txt
